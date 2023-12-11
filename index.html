@@ -46,8 +46,6 @@
 
     <p><strong>RDAP.org</strong> aims to support users and developers of RDAP clients by providing a "bootstrap server", i.e. single end point for RDAP queries. RDAP.org aggregates information about all known RDAP servers. RDAP clients can send RDAP queries to RDAP.org, which will then redirect requests to the appropriate RDAP service.</p>
 
-    <p>Note: RDAP.org is not affiliated with ICANN or IANA.</p>
-
     <h3>How To Use RDAP.org</h3>
 
     <h4>Client Implementers</h4>
@@ -58,19 +56,11 @@
     <ul>
       <li><tt>302</tt> – occurs when RDAP.org knows of an RDAP service which is authoritative for the requested resource. Follow the URL listed in the <tt>Location</tt> header.</li>
       <li><tt>400</tt> – occurs when RDAP.org receives an invalid request (malformed path, unsupported object type, invalid IP address, etc).</li>
+      <li><tt>403</tt> – occurs if you've been blocked due to abuse or other misbehaviour.</li>
       <li><tt>404</tt> – occurs when RDAP.org doesn’t know of an RDAP service which is authoritative for the requested resource.</li>
-<!--      <li><tt>429</tt> – occurs if you have exceeded the <a href="#rate-limits">rate limits</a>.</li>-->
       <li><tt>500</tt> – occurs when RDAP.org is broken in some way.</li>
-<!--      <li><tt>504</tt> – occurs if RDAP.org needs to refresh the IANA bootstrap registry, but cannot.</li>-->
     </ul>
-
-<!--
-    <p><a name="rate-limits"></a></p>
-    <h4>Rate Limits</h4>
-
-    <p>RDAP.org will return a <tt>429</tt> response if you send more than 600 requests in a rolling 300-second (5 minute) window. So you need to stay below 5 queries per second to avoid this limit.</p>
-    <p>If you are interested in doing high-volume data mining of registration data, please (a) don’t, but if you must, (b) consume the IANA registries directly. For Perl programmers, <a href="https://metacpan.org/pod/Net::RDAP::Registry">Net::RDAP::Registry</a>, which is part of  <a href="https://metacpan.org/pod/Net::RDAP">Net::RDAP</a>, provides a simple interface to these registries. Similiar RDAP libraries are available for other programming languages.</p>
--->
+    <p>Note that these status codes only apply to the RDAP.org service itself, not the registry RDAP services themselves.</p>
 
     <a name="additional"></a>
     <h4>Additional Resources</h4>
@@ -113,13 +103,12 @@
 
     <h3>About RDAP.org</h3>
 
-    <p>RDAP.org is maintained by <a href="https://gavinbrown.xyz">Gavin Brown</a>.</p>
-
     <p>You can review the code which RDAP.org uses on <a href="https://github.com/gbxyz/rdap-bootstrap-server">GitHub</a>.</p>
+
+    <p>RDAP.org is maintained by me, <a href="https://gavinbrown.xyz">Gavin Brown</a>. While I am currently an employee of ICANN, I run this service in my own time and at my own cost.</p>
 
     <h3>Supporting RDAP.ORG</h3>
     <p>If your organisation depends on RDAP.org, then please consider supporting it, since it's not free to operate and requires ongoing maintenance and management.</p>
-    <p>If youd would like to support this service, please email <a href="mailto:support@rdap.org">support@rdap.org</a> to dicuss options.</p>
-
+    <p>If you'd like to support this service, please email <a href="mailto:support@rdap.org">support@rdap.org</a> to discuss options.</p>
   </div>
 </body>
