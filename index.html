@@ -87,15 +87,13 @@
     </ul>
     <p>Note that these status codes only apply to the RDAP.org service itself, not the registry RDAP services themselves.</p>
 
+    <h3>IANA RDAP Service</h3>
+    <p><a href="https://www.iana.org">IANA</a> has recently launched an RDAP service. Each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://rdap.iana.org/domain/{TLD}</tt></a> <em>(<tt>root.rdap.org/domain</tt> now redirects to this server)</em>. You can also get an RDAP search result listing <em>all</em> TLDs using <a href="https://root.rdap.org/domains">https://root.rdap.org/domains</a>.
+
     <a name="additional"></a>
     <h3>Additional Resources</h3>
 
-    <p>Apart from the DNS, ASN and IP registries which are listed in the IANA registry, RDAP.ORG also provides the following unofficial RDAP server endpoints:</p>
-
-    <ul>
-      <li><strong>Top-level domains</strong> – each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://root.rdap.org/domain/{TLD}</tt></a>. You can also get an RDAP search result for <em>all</em> TLDs using <a href="https://root.rdap.org/domains">https://root.rdap.org/domains</a>. This data is generated from the <a href="https://www.iana.org/whois">IANA whois</a>.</li>
-      <li><strong>ICANN-accredited registrars</strong> – you can obtain RDAP records for ICANN-accredited registrars at <a href="javascript:window.open('https://client.rdap.org/?type=registrar&amp;object='+escape(prompt('Enter registrar IANA ID:')));void(0)"><tt>https://registrars.rdap.org/entity/{NNNN}-iana</tt></a> where <tt>{NNNN}</tt> is the numeric <a href="https://www.iana.org/assignments/registrar-ids/">IANA ID</a>. These records are synthesised from data published by IANA and ICANN.</li>
-    </ul>
+    <p>Apart from the DNS, ASN and IP registries which are listed in the IANA registry, and IANA's own RDAP server, RDAP.ORG also provides an RDAP service for <strong>ICANN-accredited registrars</strong>. You can obtain RDAP records for ICANN-accredited registrars at <a href="javascript:window.open('https://client.rdap.org/?type=registrar&amp;object='+escape(prompt('Enter registrar IANA ID:')));void(0)"><tt>https://registrars.rdap.org/entity/{NNNN}-iana</tt></a> where <tt>{NNNN}</tt> is the numeric <a href="https://www.iana.org/assignments/registrar-ids/">IANA ID</a>. These records are synthesised from data published by IANA and ICANN.</p>
 
     <h3>References</h3>
 
@@ -104,19 +102,20 @@
     <ul>
       <li><a href="https://tools.ietf.org/html/rfc7480">RFC 7480: HTTP Usage in the Registration Data Access Protocol (RDAP)</a></li>
       <li><a href="https://tools.ietf.org/html/rfc7481">RFC 7481: Security Services for the Registration Data Access Protocol (RDAP)</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc9082">RFC 9082: Registration Data Access Protocol (RDAP) Query Format</a></li>
       <li><a href="https://tools.ietf.org/html/rfc9083">RFC 9083: JSON Responses for the Registration Data Access Protocol (RDAP)</a></li>
       <li><a href="https://tools.ietf.org/html/rfc9224">RFC 9224: Finding the Authoritative Registration Data (RDAP) Service</a></li>
       <li><a href="https://tools.ietf.org/html/rfc8056">RFC 8056: Registration Data Access Protocol (RDAP) Object Tagging</a></li>
-      <li>
-        All generic TLDs (and some ccTLDs) are compliant with the <a href="https://www.icann.org/gtld-rdap-profile">gTLD RDAP Profile</a>
-        <ul>
-          <li><a href="https://www.icann.org/en/system/files/files/rdap-technical-implementation-guide-15feb19-en.pdf">Technical Implementation Guide</a> (PDF)</li>
-          <li><a href="https://www.icann.org/en/system/files/files/rdap-response-profile-15feb19-en.pdf">RDAP Response Profile</a> (PDF)</li>
-        </ul>
-      </li>
+      <li><a href="https://tools.ietf.org/html/rfc8977">RFC 8977: Registration Data Access Protocol (RDAP) Query Parameters for Result Sorting and Paging</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc8982">RFC 8982: Registration Data Access Protocol (RDAP) Partial Response</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc9082">RFC 9082: Registration Data Access Protocol (RDAP) Query Format</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc9536">RFC 9536: Registration Data Access Protocol (RDAP) Reverse Search</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc9537">RFC 9537: Redacted Fields in the Registration Data Access Protocol (RDAP) Response</a></li>
+
+      <li>All generic TLDs (and some ccTLDs) are compliant with the <a href="https://www.icann.org/gtld-rdap-profile">gTLD RDAP Profile</a>.</li>
       <li>The <a href="https://nro.net">Number Resource Organization</a> (NRO) developed the <a href="https://bitbucket.org/nroecg/nro-rdap-profile/src/master/nro-rdap-profile.txt">NRO RDAP profile</a> for RIR RDAP services.</li>
     </ul>
+
+    <p>Many RDAP servers have also implemented their own custom extensions, some of which may be found in the <a href="https://www.iana.org/assignments/rdap-extensions/rdap-extensions.xhtml">RDAP Extensions registry</a> at IANA.</p>
 
     <h2>Privacy Considerations</h2>
 
