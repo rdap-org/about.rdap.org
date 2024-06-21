@@ -2,12 +2,6 @@ const meta = document.head.appendChild(document.createElement("meta"));
 meta.setAttribute("name", "viewport");
 meta.setAttribute("content", "width=device-width, initial-scale=1");
 
-const container = document.body.insertBefore(
-    document.createElement("div"),
-    document.body.firstChild
-);
-container.classList.add("container");
-
 const nav = document.body.insertBefore(document.createElement("nav"), document.body.firstChild);
 nav.classList.add("navbar", "navbar-expand-lg", "navbar-dark", "bg-dark", "shadow-sm");
 
@@ -57,4 +51,4 @@ for (const [title, href] of Object.entries(links)) {
     a.appendChild(document.createTextNode(title));
 }
 
-document.body.insertBefore(document.createElement("br"), container);
+document.body.insertBefore(document.createElement("br"), nav);
