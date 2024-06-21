@@ -1,7 +1,3 @@
-const link = document.head.appendChild(document.createElement("link"));
-link.setAttribute("rel", "stylesheet");
-link.setAttribute("href", "https://client.rdap.org/assets/bootstrap.min.css");
-
 const meta = document.head.appendChild(document.createElement("meta"));
 meta.setAttribute("name", "viewport");
 meta.setAttribute("content", "width=device-width, initial-scale=1");
