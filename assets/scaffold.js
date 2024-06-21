@@ -51,4 +51,4 @@ for (const [title, href] of Object.entries(links)) {
     a.appendChild(document.createTextNode(title));
 }
 
-document.body.insertBefore(document.createElement("br"), nav);
+document.body.insertBefore(document.createElement("br"), nav.nextSibling);
