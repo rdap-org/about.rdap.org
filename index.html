@@ -3,142 +3,114 @@
   <head>
     <meta charset="UTF-8">
     <title>Registration Data Access Protocol (RDAP)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://client.rdap.org/assets/bootstrap.min.css">
+    <script type="module" src="/assets/scaffold.js"></script>
     <style>
-      h1 {
-        margin:0;
-        padding:0;
-      }
       h2 {
-        font-size: 20px;
-        margin-top: 20px;
+        font-size: 1.5em !important;
+        margin: 1.5em 0;
       }
       h3 {
-        font-size: 18px;
-        margin-top: 15px;
+        font-size: 1.25em !important;
+        margin: 1.25em 0;
       }
     </style>
   </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-    <h1 class="text-white font-weight-bold" style="font-size:larger">
-      <a class="navbar-brand" href="#">RDAP.ORG</a>
-    </h1>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar1">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link active" href="https://about.rdap.org/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://client.rdap.org/">Web Client</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://deployment.rdap.org/">Deployment Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://validator.rdap.org/">Validator</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
 
-  <br>
+<div class="container">
 
-  <div class="container">
-
-    <form action="https://client.rdap.org" method="GET" class="form-inline">
-      <div class="col" style="padding:0">
-        <div class="input-group">
-          <input class="form-control" id="object" type="text" name="object" placeholder="example.com, 196.168.0.1, 2001:db8::/32, AS64496, etc" required>
-          <div class="input-group-append">
-            <input class="btn btn-primary" type="submit" value="Submit">
-          </div>
-        </div>
+<form action="https://client.rdap.org" method="GET" class="form-inline">
+  <div class="col" style="padding:0">
+    <div class="input-group">
+      <input class="form-control" id="object" type="text" name="object" placeholder="example.com, 196.168.0.1, 2001:db8::/32, AS64496, etc" required>
+      <div class="input-group-append">
+        <input class="btn btn-primary" type="submit" value="Submit">
       </div>
-    </form>
-    <br>
-
-    <p>The <strong>Registration Data Access Protocol (RDAP)</strong> is the successor to <a href="https://whois.icann.org/en/about-whois">WHOIS</a>. Like WHOIS, RDAP provides access to information about Internet resources (<a href="https://en.wikipedia.org/wiki/Domain_name">domain names</a>, <a href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">autonomous system numbers</a>, and <a href="https://en.wikipedia.org/wiki/IP_address">IP addresses</a>). Unlike WHOIS, RDAP provides:</p>
-
-    <ul>
-      <li>A machine-readable representation of registration data;</li>
-      <li>Differentiated access;</li>
-      <li>Structured request and response semantics;</li>
-      <li>Internationalisation;</li>
-      <li>Extensibility.</li>
-    </ul>
-
-    <p><strong>RDAP.org</strong> aims to support users and developers of RDAP clients by providing a "bootstrap server", i.e. single end point for RDAP queries. RDAP.org aggregates information about all known RDAP servers. RDAP clients can send RDAP queries to RDAP.org, which will then redirect requests to the appropriate RDAP service.</p>
-
-    <h2>How To Use RDAP.org</h2>
-
-    <h3>Client Implementers</h3>
-
-    <p>If you are developing an RDAP client, configure it to send HTTP requests to <tt>https://rdap.org/&lt;type&gt;/&lt;object&gt;</tt>, where <tt>&lt;type&gt;</tt> is the object type (one of <tt>domain</tt>, <tt>ip</tt>, <tt>autnum</tt>, <tt>entity</tt> etc) and <tt>&lt;object&gt;</tt> is the object identifier (eg <a href="https://client.rdap.org/?type=domain&amp;object=example.com"><tt>example.com</tt></a>, <a href="https://client.rdap.org/?type=ip&amp;object=192.168.0.1"><tt>192.168.0.1</tt></a>,  <a href="https://client.rdap.org/?type=autnum&amp;object=64496"><tt>64496</tt></a>, etc).</p>
-
-    <h3>HTTP Status Codes</h3>
-    <ul>
-      <li><tt>302</tt> – occurs when RDAP.org knows of an RDAP service which is authoritative for the requested resource. Follow the URL listed in the <tt>Location</tt> header.</li>
-      <li><tt>400</tt> – occurs when RDAP.org receives an invalid request (malformed path, unsupported object type, invalid IP address, etc).</li>
-      <li><tt>403</tt> – occurs if you've been blocked due to abuse or other misbehaviour.</li>
-      <li><tt>404</tt> – occurs when RDAP.org doesn’t know of an RDAP service which is authoritative for the requested resource.</li>
-      <li><tt>500</tt> – occurs when RDAP.org is broken in some way.</li>
-    </ul>
-    <p>Note that these status codes only apply to the RDAP.org service itself, not the registry RDAP services themselves.</p>
-
-    <h3>IANA RDAP Service</h3>
-    <p><a href="https://www.iana.org">IANA</a> has recently launched an RDAP service. Each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://rdap.iana.org/domain/{TLD}</tt></a> <em>(<tt>root.rdap.org/domain</tt> now redirects to this server)</em>. You can also get an RDAP search result listing <em>all</em> TLDs using <a href="https://root.rdap.org/domains">https://root.rdap.org/domains</a>.
-
-    <a name="additional"></a>
-    <h3>Additional Resources</h3>
-
-    <p>Apart from the DNS, ASN and IP registries which are listed in the IANA registry, and IANA's own RDAP server, RDAP.ORG also provides an RDAP service for <strong>ICANN-accredited registrars</strong>. You can obtain RDAP records for ICANN-accredited registrars at <a href="javascript:window.open('https://client.rdap.org/?type=registrar&amp;object='+escape(prompt('Enter registrar IANA ID:')));void(0)"><tt>https://registrars.rdap.org/entity/{NNNN}-iana</tt></a> where <tt>{NNNN}</tt> is the numeric <a href="https://www.iana.org/assignments/registrar-ids/">IANA ID</a>. These records are synthesised from data published by IANA and ICANN.</p>
-
-    <h3>References</h3>
-
-    <p>These are the authoritative references for the RDAP protocol specifications:</p>
-
-    <ul>
-      <li><a href="https://tools.ietf.org/html/rfc7480">RFC 7480: HTTP Usage in the Registration Data Access Protocol (RDAP)</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc7481">RFC 7481: Security Services for the Registration Data Access Protocol (RDAP)</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc9083">RFC 9083: JSON Responses for the Registration Data Access Protocol (RDAP)</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc9224">RFC 9224: Finding the Authoritative Registration Data (RDAP) Service</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc8056">RFC 8056: Registration Data Access Protocol (RDAP) Object Tagging</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc8977">RFC 8977: Registration Data Access Protocol (RDAP) Query Parameters for Result Sorting and Paging</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc8982">RFC 8982: Registration Data Access Protocol (RDAP) Partial Response</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc9082">RFC 9082: Registration Data Access Protocol (RDAP) Query Format</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc9536">RFC 9536: Registration Data Access Protocol (RDAP) Reverse Search</a></li>
-      <li><a href="https://tools.ietf.org/html/rfc9537">RFC 9537: Redacted Fields in the Registration Data Access Protocol (RDAP) Response</a></li>
-
-      <li>All generic TLDs (and some ccTLDs) are compliant with the <a href="https://www.icann.org/gtld-rdap-profile">gTLD RDAP Profile</a>.</li>
-      <li>The <a href="https://nro.net">Number Resource Organization</a> (NRO) developed the <a href="https://bitbucket.org/nroecg/nro-rdap-profile/src/master/nro-rdap-profile.txt">NRO RDAP profile</a> for RIR RDAP services.</li>
-    </ul>
-
-    <p>Many RDAP servers have also implemented their own custom extensions, some of which may be found in the <a href="https://www.iana.org/assignments/rdap-extensions/rdap-extensions.xhtml">RDAP Extensions registry</a> at IANA.</p>
-
-    <h2>Privacy Considerations</h2>
-
-    <p>If you use RDAP.org to perform RDAP queries, your queries will be logged, alongside your IP address. These logs are not disclosed to anyone and are deleted within a few days. RDAP.org will not set any cookies in your browser.</p>
-
-    <h2>Submit Feedback</h2>
-
-    <p>If you would like to submit feedback <a href="mailto:feedback@rdap.org" id="feedback-link">please click here</a>.</p>
-
-    <h2>About RDAP.org</h2>
-
-    <p>You can review the code which RDAP.org uses on <a href="https://github.com/gbxyz/rdap-bootstrap-server">GitHub</a>.</p>
-
-    <p>RDAP.org is maintained by me, <a href="https://gavinbrown.xyz">Gavin Brown</a>. While I am currently an employee of ICANN, I run this service in my own time and at my own cost.</p>
-
-    <h2>Supporting RDAP.ORG</h2>
-    <p>If your organisation depends on RDAP.org, then please consider supporting it, since it's not free to operate and requires ongoing maintenance and management.</p>
-    <p>If you'd like to support this service, please email <a href="mailto:support@rdap.org">support@rdap.org</a> to discuss options.</p>
+    </div>
   </div>
-  <script>
-    document.getElementById('object').focus();
-  </script>
+</form>
+<br>
+
+<p>The <strong>Registration Data Access Protocol (RDAP)</strong> is the successor to <a href="https://whois.icann.org/en/about-whois">WHOIS</a>. Like WHOIS, RDAP provides access to information about Internet resources (<a href="https://en.wikipedia.org/wiki/Domain_name">domain names</a>, <a href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">autonomous system numbers</a>, and <a href="https://en.wikipedia.org/wiki/IP_address">IP addresses</a>). Unlike WHOIS, RDAP provides:</p>
+
+<ul>
+  <li>A machine-readable representation of registration data;</li>
+  <li>Differentiated access;</li>
+  <li>Structured request and response semantics;</li>
+  <li>Internationalisation;</li>
+  <li>Extensibility.</li>
+</ul>
+
+<p><strong>RDAP.org</strong> aims to support users and developers of RDAP clients by providing a "bootstrap server", i.e. single end point for RDAP queries. RDAP.org aggregates information about all known RDAP servers. RDAP clients can send RDAP queries to RDAP.org, which will then redirect requests to the appropriate RDAP service.</p>
+
+<h2>How To Use RDAP.org</h2>
+
+<h3>Client Implementers</h3>
+
+<p>If you are developing an RDAP client, configure it to send HTTP requests to <tt>https://rdap.org/&lt;type&gt;/&lt;object&gt;</tt>, where <tt>&lt;type&gt;</tt> is the object type (one of <tt>domain</tt>, <tt>ip</tt>, <tt>autnum</tt>, <tt>entity</tt> etc) and <tt>&lt;object&gt;</tt> is the object identifier (eg <a href="https://client.rdap.org/?type=domain&amp;object=example.com"><tt>example.com</tt></a>, <a href="https://client.rdap.org/?type=ip&amp;object=192.168.0.1"><tt>192.168.0.1</tt></a>,  <a href="https://client.rdap.org/?type=autnum&amp;object=64496"><tt>64496</tt></a>, etc).</p>
+
+<h3>HTTP Status Codes</h3>
+<ul>
+  <li><tt>302</tt> – occurs when RDAP.org knows of an RDAP service which is authoritative for the requested resource. Follow the URL listed in the <tt>Location</tt> header.</li>
+  <li><tt>400</tt> – occurs when RDAP.org receives an invalid request (malformed path, unsupported object type, invalid IP address, etc).</li>
+  <li><tt>403</tt> – occurs if you've been blocked due to abuse or other misbehaviour.</li>
+  <li><tt>404</tt> – occurs when RDAP.org doesn’t know of an RDAP service which is authoritative for the requested resource.</li>
+  <li><tt>500</tt> – occurs when RDAP.org is broken in some way.</li>
+</ul>
+<p>Note that these status codes only apply to the RDAP.org service itself, not the registry RDAP services themselves.</p>
+
+<h3>IANA RDAP Service</h3>
+<p><a href="https://www.iana.org">IANA</a> has recently launched an RDAP service. Each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://rdap.iana.org/domain/{TLD}</tt></a> <em>(<tt>root.rdap.org/domain</tt> now redirects to this server)</em>. You can also get an RDAP search result listing <em>all</em> TLDs using <a href="https://root.rdap.org/domains">https://root.rdap.org/domains</a>.
+
+<a name="additional"></a>
+<h3>Additional Resources</h3>
+
+<p>Apart from the DNS, ASN and IP registries which are listed in the IANA registry, and IANA's own RDAP server, RDAP.ORG also provides an RDAP service for <strong>ICANN-accredited registrars</strong>. You can obtain RDAP records for ICANN-accredited registrars at <a href="javascript:window.open('https://client.rdap.org/?type=registrar&amp;object='+escape(prompt('Enter registrar IANA ID:')));void(0)"><tt>https://registrars.rdap.org/entity/{NNNN}-iana</tt></a> where <tt>{NNNN}</tt> is the numeric <a href="https://www.iana.org/assignments/registrar-ids/">IANA ID</a>. These records are synthesised from data published by IANA and ICANN.</p>
+
+<h3>References</h3>
+
+<p>These are the authoritative references for the RDAP protocol specifications:</p>
+
+<ul>
+  <li><a href="https://tools.ietf.org/html/rfc7480">RFC 7480: HTTP Usage in the Registration Data Access Protocol (RDAP)</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc7481">RFC 7481: Security Services for the Registration Data Access Protocol (RDAP)</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc9083">RFC 9083: JSON Responses for the Registration Data Access Protocol (RDAP)</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc9224">RFC 9224: Finding the Authoritative Registration Data (RDAP) Service</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc8056">RFC 8056: Registration Data Access Protocol (RDAP) Object Tagging</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc8977">RFC 8977: Registration Data Access Protocol (RDAP) Query Parameters for Result Sorting and Paging</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc8982">RFC 8982: Registration Data Access Protocol (RDAP) Partial Response</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc9082">RFC 9082: Registration Data Access Protocol (RDAP) Query Format</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc9536">RFC 9536: Registration Data Access Protocol (RDAP) Reverse Search</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc9537">RFC 9537: Redacted Fields in the Registration Data Access Protocol (RDAP) Response</a></li>
+
+  <li>All generic TLDs (and some ccTLDs) are compliant with the <a href="https://www.icann.org/gtld-rdap-profile">gTLD RDAP Profile</a>.</li>
+  <li>The <a href="https://nro.net">Number Resource Organization</a> (NRO) developed the <a href="https://bitbucket.org/nroecg/nro-rdap-profile/src/master/nro-rdap-profile.txt">NRO RDAP profile</a> for RIR RDAP services.</li>
+</ul>
+
+<p>Many RDAP servers have also implemented their own custom extensions, some of which may be found in the <a href="https://www.iana.org/assignments/rdap-extensions/rdap-extensions.xhtml">RDAP Extensions registry</a> at IANA.</p>
+
+<h2>Privacy Considerations</h2>
+
+<p>If you use RDAP.org to perform RDAP queries, your queries will be logged, alongside your IP address. These logs are not disclosed to anyone and are deleted within a few days. RDAP.org will not set any cookies in your browser.</p>
+
+<h2>Submit Feedback</h2>
+
+<p>If you would like to submit feedback <a href="mailto:feedback@rdap.org" id="feedback-link">please click here</a>.</p>
+
+<h2>About RDAP.org</h2>
+
+<p>You can review the code which RDAP.org uses on <a href="https://github.com/gbxyz/rdap-bootstrap-server">GitHub</a>.</p>
+
+<p>RDAP.org is maintained by me, <a href="https://gavinbrown.xyz">Gavin Brown</a>. While I am currently an employee of ICANN, I run this service in my own time and at my own cost.</p>
+
+<h2>Supporting RDAP.ORG</h2>
+<p>If your organisation depends on RDAP.org, then please consider supporting it, since it's not free to operate and requires ongoing maintenance and management.</p>
+<p>If you'd like to support this service, please email <a href="mailto:support@rdap.org">support@rdap.org</a> to discuss options.</p>
+
+<script>
+  document.getElementById('object').focus();
+</script>
+
+</div>
+
 </body>
