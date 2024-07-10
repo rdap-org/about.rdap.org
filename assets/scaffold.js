@@ -47,7 +47,7 @@ navUl.classList.add("navbar-nav", "mr-auto", "mt-2", "mt-lg-0")
 const links = {
     "Home":                 scheme + "about." + domain,
     "Web Client":           scheme + "client." + domain,
-    "Deployment Dashbaord": scheme + "deployment." + domain,
+    "Deployment Dashboard": scheme + "deployment." + domain,
     "Validator":            scheme + "validator." + domain,
 };
 
