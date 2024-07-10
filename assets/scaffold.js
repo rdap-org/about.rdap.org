@@ -45,10 +45,10 @@ const navUl = navBar.appendChild(document.createElement("ul"));
 navUl.classList.add("navbar-nav", "mr-auto", "mt-2", "mt-lg-0")
 
 const links = {
-    "Home":                 scheme + "about" + domain,
-    "Web Client":           scheme + "client" + domain,
-    "Deployment Dashbaord": scheme + "deployment" + domain,
-    "Validator":            scheme + "validator" + domain,
+    "Home":                 scheme + "about." + domain,
+    "Web Client":           scheme + "client." + domain,
+    "Deployment Dashbaord": scheme + "deployment." + domain,
+    "Validator":            scheme + "validator." + domain,
 };
 
 for (const [title, href] of Object.entries(links)) {
