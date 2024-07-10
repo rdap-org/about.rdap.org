@@ -10,6 +10,10 @@ meta.setAttribute("content", "width=device-width, initial-scale=1");
 const script = document.head.appendChild(document.createElement("script"));
 script.setAttribute("src", assetBase + "bootstrap.bundle.js");
 
+const iconLink = document.head.appendChild(document.createElement("link"));
+iconLink.setAttribute("rel", "shortcut icon");
+iconLink.setAttribute("href", assetBase + "/icon.png");
+
 const cssLink = document.head.appendChild(document.createElement("link"));
 cssLink.setAttribute("rel", "stylesheet");
 cssLink.setAttribute("href", assetBase + "/bootstrap.min.css");
