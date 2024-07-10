@@ -1,24 +1,37 @@
+const domain = "rdap.org";
+
+const scheme = "https://";
+const assetBase = scheme + "about." + domain + "/assets/";
+
 const meta = document.head.appendChild(document.createElement("meta"));
 meta.setAttribute("name", "viewport");
 meta.setAttribute("content", "width=device-width, initial-scale=1");
 
+const script = document.head.appendChild(document.createElement("script"));
+script.setAttribute("src", assetBase + "bootstrap.bundle.js");
+
+const cssLink = document.head.appendChild(document.createElement("link"));
+cssLink.setAttribute("rel", "stylesheet");
+cssLink.setAttribute("href", assetBase + "/bootstrap.min.css");
+
 const nav = document.body.insertBefore(document.createElement("nav"), document.body.firstChild);
 nav.classList.add("navbar", "navbar-expand-lg", "navbar-dark", "bg-dark", "shadow-sm");
+nav.style.setProperty("padding", "0.25em 1em");
 
-const titleSpan = nav.appendChild(document.createElement("span"));
-titleSpan.classList.add("text-white", "font-weight-bold");
-titleSpan.style["font-size"] = "larger";
-
-const titleLink = titleSpan.appendChild(document.createElement("a"));
+const titleLink = nav.appendChild(document.createElement("a"));
 titleLink.classList.add("navbar-brand");
 titleLink.setAttribute("href", "#");
-titleLink.appendChild(document.createTextNode("RDAP.ORG"));
+
+const titleSpan = titleLink.appendChild(document.createElement("span"));
+titleSpan.classList.add("text-white", "font-weight-bold");
+titleSpan.style.setProperty("font-size", "larger");
+titleSpan.appendChild(document.createTextNode("RDAP.ORG"));
 
 const navButton = nav.appendChild(document.createElement("button"));
 navButton.classList.add("navbar-toggler");
 navButton.setAttribute("type", "button");
-navButton.setAttribute("data-toggle", "collapse");
-navButton.setAttribute("data-target", "#navbar1");
+navButton.setAttribute("data-bs-toggle", "collapse");
+navButton.setAttribute("data-bs-target", "#navbar1");
 navButton.setAttribute("aria-controls", "navbar1");
 navButton.setAttribute("aria-expanded", false);
 navButton.setAttribute("aria-label", "Toggle navigation");
@@ -32,10 +45,10 @@ const navUl = navBar.appendChild(document.createElement("ul"));
 navUl.classList.add("navbar-nav", "mr-auto", "mt-2", "mt-lg-0")
 
 const links = {
-    "Home": "https://about.rdap.org",
-    "Web Client": "https://client.rdap.org",
-    "Deployment Dashboard": "https://deployment.rdap.org",
-    "Validator": "https://validator.rdap.org",
+    "Home":                 scheme + "about" + domain,
+    "Web Client":           scheme + "client" + domain,
+    "Deployment Dashbaord": scheme + "deployment" + domain,
+    "Validator":            scheme + "validator" + domain,
 };
 
 for (const [title, href] of Object.entries(links)) {
@@ -44,8 +57,7 @@ for (const [title, href] of Object.entries(links)) {
 
     const a = li.appendChild(document.createElement("a"));
     a.classList.add("nav-link");
-
-    if (window.location.origin === href) a.classList.add("active");
+    if (window.location.origin.startsWith(href)) a.classList.add("active");
     a.setAttribute("href", href);
 
     a.appendChild(document.createTextNode(title));
