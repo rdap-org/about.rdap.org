@@ -1,0 +1,8 @@
+title: RDAP.ORG
+email: feedback@rdap.org
+description:
+baseurl: "/"
+url: "https://about.rdap.org"
+
+exclude:
+  - CNAME
