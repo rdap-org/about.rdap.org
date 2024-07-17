@@ -33,6 +33,10 @@
     {% endfor %}
   {% endif %}
 
+  {% if page.alternate %}
+      <link rel="alternate" type="{{page.alternate.type | escape}}" href="{{ page.alternate.href | escape }}">
+  {% endif %}
+
   <style>
     nav {
       padding: 0.25em 1em !important;
