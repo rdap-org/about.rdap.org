@@ -3,6 +3,7 @@ email: feedback@rdap.org
 description: Information about and tools for the Registration Data Access Protocol (RDAP)
 baseurl: "/"
 url: "https://about.rdap.org"
+keywords: rdap, whois, rdap, domain name, dns, ip address
 
 exclude:
   - CNAME
