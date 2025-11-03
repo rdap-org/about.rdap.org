@@ -17,17 +17,17 @@ stylesheets:
 </form>
 <br>
 
-<p>The <strong>Registration Data Access Protocol (RDAP)</strong> is the successor to <a href="https://whois.icann.org/en/about-whois">WHOIS</a>. Like WHOIS, RDAP provides access to information about Internet resources (<a href="https://en.wikipedia.org/wiki/Domain_name">domain names</a>, <a href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">autonomous system numbers</a>, and <a href="https://en.wikipedia.org/wiki/IP_address">IP addresses</a>). Unlike WHOIS, RDAP provides:</p>
+<p>The <strong>Registration Data Access Protocol (RDAP)</strong> provides access to information about Internet resources (<a href="https://en.wikipedia.org/wiki/Domain_name">domain names</a>, <a href="https://en.wikipedia.org/wiki/Autonomous_system_(Internet)">autonomous system numbers</a>, and <a href="https://en.wikipedia.org/wiki/IP_address">IP addresses</a>). Unlike <a href="https://whois.icann.org/en/about-whois">WHOIS</a>, which it replaces, RDAP provides:</p>
 
 <ul>
-  <li>A machine-readable representation of registration data;</li>
-  <li>Differentiated access;</li>
+  <li>Machine-readable representations of registration data;</li>
   <li>Structured request and response semantics;</li>
+  <li>Differentiated access;</li>
   <li>Internationalisation;</li>
   <li>Extensibility.</li>
 </ul>
 
-<p><strong>RDAP.org</strong> aims to support users and developers of RDAP clients by providing a "bootstrap server", i.e. single end point for RDAP queries. RDAP.org aggregates information about all known RDAP servers. RDAP clients can send RDAP queries to RDAP.org, which will then redirect requests to the appropriate RDAP service.</p>
+<p><strong>RDAP.org</strong> provides a "bootstrap server", i.e. single end point for RDAP queries. RDAP.org aggregates information about all known RDAP servers. RDAP clients can send RDAP queries to RDAP.org, which will then redirect requests to the appropriate RDAP service.</p>
 
 <h2>How To Use RDAP.org</h2>
 
@@ -41,11 +41,14 @@ stylesheets:
   <li><tt>400</tt> – occurs when RDAP.org receives an invalid request (malformed path, unsupported object type, invalid IP address, etc).</li>
   <li><tt>403</tt> – occurs if you've been blocked due to abuse or other misbehaviour.</li>
   <li><tt>404</tt> – occurs when RDAP.org doesn’t know of an RDAP service which is authoritative for the requested resource. RDAP.org only knows about RDAP servers that are <a href="https://www.iana.org/assignments/rdap-dns/rdap-dns.xhtml">registered with IANA</a>.</li>
-  <li><tt>500</tt> – occurs when RDAP.org is broken in some way.</li>
+  <li><tt>429</tt> – occurs if you've been temporarily rate-limited. If you've hit this limit, then you probably should be using the bootstrap registries themselves (see RFC 9224).</li>
+  <li><tt>50x</tt> – occurs when RDAP.org is broken in some way.</li>
 </ul>
+
 <p>Note that these status codes only apply to the RDAP.org service itself, not the registry RDAP services themselves.</p>
 
 <h3>IANA RDAP Service</h3>
+
 <p><a href="https://www.iana.org">IANA</a> has recently launched an RDAP service. Each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://rdap.iana.org/domain/{TLD}</tt></a> <em>(<tt>root.rdap.org/domain</tt> now redirects to this server)</em>. You can also get an RDAP search result listing <em>all</em> TLDs using <a href="https://root.rdap.org/domains">https://root.rdap.org/domains</a>.
 
 <a name="additional"></a>
@@ -88,6 +91,7 @@ stylesheets:
 <p>If you would like to submit feedback, please email <a href="mailto:feedback@rdap.org" id="feedback-link">feedback@rdap.org</a>.</p>
 
 <h2>Supporting RDAP.ORG</h2>
+
 <p>If your organisation depends on RDAP.org, then please consider <a href="https://ko-fi.com/rdaporg" target="_blank">supporting it</a>, since it's not free to operate and requires ongoing maintenance and management.</p>
 
 <h2>About RDAP.org</h2>
