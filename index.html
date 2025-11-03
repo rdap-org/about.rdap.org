@@ -40,8 +40,8 @@ stylesheets:
   <li><tt>302</tt> – occurs when RDAP.org knows of an RDAP service which is authoritative for the requested resource. Follow the URL listed in the <tt>Location</tt> header.</li>
   <li><tt>400</tt> – occurs when RDAP.org receives an invalid request (malformed path, unsupported object type, invalid IP address, etc).</li>
   <li><tt>403</tt> – occurs if you've been blocked due to abuse or other misbehaviour.</li>
-  <li><tt>404</tt> – occurs when RDAP.org doesn’t know of an RDAP service which is authoritative for the requested resource. RDAP.org only knows about RDAP servers that are <a href="https://www.iana.org/assignments/rdap-dns/rdap-dns.xhtml">registered with IANA</a>.</li>
-  <li><tt>429</tt> – occurs if you've been temporarily rate-limited. If you've hit this limit, then you probably should be using the bootstrap registries themselves (see RFC 9224).</li>
+  <li><tt>404</tt> – occurs when RDAP.org doesn’t know of an RDAP service which is authoritative for the requested resource. RDAP.org only knows about RDAP servers that are <a href="https://www.iana.org/protocols#:~:text=Registration%20Data%20Access%20Protocol%20%28RDAP%29">registered with IANA</a>.</li>
+  <li><tt>429</tt> – occurs if you've been temporarily rate-limited. If you've hit this limit, then you probably should be using the <a href="https://www.iana.org/protocols#:~:text=Registration%20Data%20Access%20Protocol%20%28RDAP%29">bootstrap registries</a> themselves (see RFC 9224).</li>
   <li><tt>50x</tt> – occurs when RDAP.org is broken in some way.</li>
 </ul>
 
@@ -49,12 +49,7 @@ stylesheets:
 
 <h3>IANA RDAP Service</h3>
 
-<p><a href="https://www.iana.org">IANA</a> has recently launched an RDAP service. Each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://rdap.iana.org/domain/{TLD}</tt></a> <em>(<tt>root.rdap.org/domain</tt> now redirects to this server)</em>. You can also get an RDAP search result listing <em>all</em> TLDs using <a href="https://root.rdap.org/domains">https://root.rdap.org/domains</a>.
-
-<a name="additional"></a>
-<h3>Additional Resources</h3>
-
-<p>Apart from the DNS, ASN and IP registries which are listed in the IANA registry, and IANA's own RDAP server, RDAP.ORG also provides an RDAP service for <strong>ICANN-accredited registrars</strong>. You can obtain RDAP records for ICANN-accredited registrars at <a href="javascript:window.open('https://client.rdap.org/?type=registrar&amp;object='+escape(prompt('Enter registrar IANA ID:')));void(0)"><tt>https://registrars.rdap.org/entity/{NNNN}-iana</tt></a> where <tt>{NNNN}</tt> is the numeric <a href="https://www.iana.org/assignments/registrar-ids/">IANA ID</a>. These records are synthesised from data published by IANA and ICANN.</p>
+<p><a href="https://www.iana.org">IANA</a> has recently launched an RDAP service. Each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://rdap.iana.org/domain/{TLD}</tt></a>.
 
 <h3>References</h3>
 
@@ -71,6 +66,8 @@ stylesheets:
   <li><a href="https://tools.ietf.org/html/rfc9082">RFC 9082: Registration Data Access Protocol (RDAP) Query Format</a></li>
   <li><a href="https://tools.ietf.org/html/rfc9536">RFC 9536: Registration Data Access Protocol (RDAP) Reverse Search</a></li>
   <li><a href="https://tools.ietf.org/html/rfc9537">RFC 9537: Redacted Fields in the Registration Data Access Protocol (RDAP) Response</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc9560">RFC 9560: Federated Authentication for the Registration Data Access Protocol (RDAP) Using OpenID Connect</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc9877">RFC 9877: Registration Data Access Protocol (RDAP) Extension for Geofeed Data</a></li>
 
   <li>All generic TLDs (and some ccTLDs) are compliant with the <a href="https://www.icann.org/gtld-rdap-profile">gTLD RDAP Profile</a>.</li>
   <li>The <a href="https://nro.net">Number Resource Organization</a> (NRO) developed the <a href="https://bitbucket.org/nroecg/nro-rdap-profile/src/master/nro-rdap-profile.txt">NRO RDAP profile</a> for RIR RDAP services.</li>
