@@ -5,6 +5,8 @@ stylesheets:
   - /assets/style.css?v=202407161206
 ---
 
+<div class="alert alert-warning alert-dismissible fade show">RDAP.ORG will be undergoing maintenance today. The disruption should only be brief (10-15 mins). If you experience any issues, please check back later.</div>
+
 <form action="https://client.rdap.org" method="GET" class="form-inline">
   <div class="col" style="padding:0">
     <div class="input-group">
@@ -31,9 +33,11 @@ stylesheets:
 
 <h2>How To Use RDAP.org</h2>
 
-<h3>Client Implementers</h3>
-
 <p>If you are developing an RDAP client, configure it to send HTTP requests to <tt>https://rdap.org/&lt;type&gt;/&lt;object&gt;</tt>, where <tt>&lt;type&gt;</tt> is the object type (one of <tt>domain</tt>, <tt>ip</tt>, <tt>autnum</tt>, <tt>entity</tt> etc) and <tt>&lt;object&gt;</tt> is the object identifier (eg <a href="https://client.rdap.org/?type=domain&amp;object=example.com"><tt>example.com</tt></a>, <a href="https://client.rdap.org/?type=ip&amp;object=192.168.0.1"><tt>192.168.0.1</tt></a>,  <a href="https://client.rdap.org/?type=autnum&amp;object=64496"><tt>64496</tt></a>, etc).</p>
+
+<p>Example using <a target="_new" href="https://curl.se/"><tt>curl</tt></a> and <a href="https://jqlang.org/" target="_new"><tt>jq</tt></a>:</p>
+
+<pre style="margin-left:2em">$ curl -Ls https://rdap.org/domain/example.com | jq .</pre>
 
 <h3>HTTP Status Codes</h3>
 <ul>
@@ -41,15 +45,15 @@ stylesheets:
   <li><tt>400</tt> – occurs when RDAP.org receives an invalid request (malformed path, unsupported object type, invalid IP address, etc).</li>
   <li><tt>403</tt> – occurs if you've been blocked due to abuse or other misbehaviour.</li>
   <li><tt>404</tt> – occurs when RDAP.org doesn’t know of an RDAP service which is authoritative for the requested resource. RDAP.org only knows about RDAP servers that are <a href="https://www.iana.org/protocols#:~:text=Registration%20Data%20Access%20Protocol%20%28RDAP%29">registered with IANA</a>.</li>
-  <li><tt>429</tt> – occurs if you've been temporarily rate-limited. If you've hit this limit, then you probably should be using the <a href="https://www.iana.org/protocols#:~:text=Registration%20Data%20Access%20Protocol%20%28RDAP%29">bootstrap registries</a> themselves (see RFC 9224).</li>
-  <li><tt>50x</tt> – occurs when RDAP.org is broken in some way.</li>
+  <li><tt>429</tt> – occurs if you've been temporarily rate-limited. If you're hitting this limit regularly, then you probably should be using a proper <a href="https://rdap.rcode3.com/client_implementations/index.html">client</a>, or consuming the <a href="https://www.iana.org/protocols#:~:text=Registration%20Data%20Access%20Protocol%20%28RDAP%29">bootstrap registries</a> themselves (see RFC 9224).</li>
+  <li><tt>50x</tt> – occurs when RDAP.org is broken in some way, or is undergoing maintenance.</li>
 </ul>
 
 <p>Note that these status codes only apply to the RDAP.org service itself, not the registry RDAP services themselves.</p>
 
-<h3>IANA RDAP Service</h3>
+<h3>Rate Limits</h3>
 
-<p><a href="https://www.iana.org">IANA</a> has recently launched an RDAP service. Each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://rdap.iana.org/domain/{TLD}</tt></a>.
+<p>Cloudflare limits clients to a maximum of 10 requests in 10 seconds: if you exceed this rate you will get a <tt>429</tt> response as described above. If you need to do that many queries, use a proper RDAP client that uses the bootstrap files instead. However, higher limits can be obtained by <a href="https://ko-fi.com/rdaporg" target="_blank">supporting RDAP.org</a>.</p>
 
 <h3>References</h3>
 
@@ -78,6 +82,10 @@ stylesheets:
 <h3>The RDAP Book</h3>
 
 <p>Andy Newton, one of the creators of RDAP, has published <a href="https://rdap.rcode3.com/" target="new"><em>A Guide to the Registration Data Access Protocol (RDAP)</em></a>, which is a definitive guide to implementing, using, and understanding all aspects of RDAP.</p>
+
+<h3>IANA RDAP Service</h3>
+
+<p><a href="https://www.iana.org">IANA</a> has recently launched an RDAP service. Each TLD has its own RDAP record at <a href="javascript:window.open('https://client.rdap.org/?type=tld&amp;object='+escape(prompt('Enter TLD:')));void(0)"><tt>https://rdap.iana.org/domain/{TLD}</tt></a>.
 
 <h2>Privacy Considerations</h2>
 

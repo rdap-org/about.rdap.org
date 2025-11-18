@@ -14,7 +14,7 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>{% if page.title != nil %}
+  <title>{% if page.title != "" %}
     {{ page.title | strip_html }} - {{ site.title | strip_html }}
   {% else %}
     {{ site.title | strip_html }}
