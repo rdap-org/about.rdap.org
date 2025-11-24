@@ -87,7 +87,7 @@ stylesheets:
 
 <h2>Privacy Considerations</h2>
 
-<p>If you use RDAP.org to perform RDAP queries, your queries will be logged, alongside your IP address. These logs are not disclosed to anyone and are deleted within a few days. RDAP.org will not set any cookies in your browser.</p>
+<p>RDAP.org collects aggregated statistics on queries, broken down by the originating network (/24 for IPv4 and /48 for IPv6), user agent, HTTP result code, <a href="https://datatracker.ietf.org/doc/html/rfc6454" target="_new">HTTP origin</a>, and enclosing TLD (for domain queries). Individual queries are not logged. You can see how this logging works by reviewing <a href="https://github.com/rdap-org/rdap.org/blob/main/lib/logger.php" target="_new">the source code</a> (the <tt>ENABLE_OUTPUT_LOGGING</tt> environment variable is only set in development environments). Cloudflare also aggregates queries by IP address for rate limiting purposes.</p>
 
 <h2>Feedback</h2>
 
